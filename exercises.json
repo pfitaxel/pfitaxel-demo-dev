@@ -1,0 +1,25 @@
+{
+  "learnocaml_version": "1",
+  "groups": {
+    "demo": {
+      "title": "Demo exercise pack",
+      "exercises": {
+        "demo": {
+          "kind": "exercise",
+          "title": "Demos of the exercise environment",
+          "stars": 0
+        },
+        "manu": {
+          "kind": "exercise",
+          "title": "Manu's Demo",
+          "stars": 1
+        },
+        "test": {
+          "kind": "exercise",
+          "title": "Demo of the exercise list rec",
+          "stars": 2.5
+        }
+      }
+    }
+  }
+}
