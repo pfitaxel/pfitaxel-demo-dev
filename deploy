@@ -1,0 +1,33 @@
+#!/bin/bash
+# Erik Martin-Dorel, 2018
+
+set -e # exit on failure
+
+pause() {
+    read -r -s -n 1 -p "Press any key to ${1:-continue} (or ^C to exit)... "
+    echo
+}
+
+srcdir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )
+repo="learn-ocaml-editor"
+
+if [ "$1" != "-B" ]; then
+    cat >&2 <<EOF
+Usage: ${BASH_SOURCE[0]} [-B]  # where -B runs 'make clean' beforehand
+EOF
+fi
+
+export PS4='+ \e[36;1m(${0##*/} @ line $LINENO) \$\e[0m '
+set -x # trace for debug
+
+cd "${srcdir}/../$repo/"
+[ "$1" = "-B" ] && make clean
+make build
+make process-repo
+rsync -av --delete-delay www/ "${srcdir}"/docs
+descr=$(git describe --long --always)
+
+cd "${srcdir}"
+git add -v -A docs
+git commit -m "Build $repo ($descr)" -e
+pause push && git push
