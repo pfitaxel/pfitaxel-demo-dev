@@ -3,6 +3,15 @@ body {
   padding: 0;
   background: #666;
 }
+
+#learnocaml-main-loading {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
 /* -------------------- toolbar ----------------------------------- */
 #learnocaml-exo-toolbar {
   position: absolute;
@@ -77,7 +86,7 @@ body {
 #learnocaml-exo-tab-buttons > button:not(:first-child) {
   border-left: 1px #333 solid;
 }
-#learnocaml-exo-tab-buttons > button:not([disabled]) {
+#learnocaml-exo-tab-buttons > button {
   border-bottom: 1px #333 solid;
 }
 #learnocaml-exo-tab-buttons > button[disabled]::before {
@@ -89,6 +98,13 @@ body {
   content:"";
   z-index: 1009;
   background: linear-gradient(to top, rgba(0,0,0,0.4) 0, transparent 5px);
+}
+#learnocaml-exo-tab-buttons > button[disabled]::after {
+	position: absolute;
+  left:0; right:0; bottom:0; top:0;
+  content:"";
+  z-index: 1009;
+  background: rgba(0,0,0,0.4);
 }
 #learnocaml-exo-tabs > * {
   position: absolute;
@@ -156,8 +172,23 @@ body {
     z-index: 998;
     opacity: 1;
   }
+  
+  #learnocaml-exo-button-editor.front-tab ~ #learnocaml-exo-button-testhaut {
+    border-bottom: none;
+    background: #bbb;
+  }
+  #learnocaml-exo-button-editor.front-tab ~ #learnocaml-exo-button-testhaut::after {
+    display: none;
+  }
+  #learnocaml-exo-tab-editor.front-tab ~ #learnocaml-exo-tab-testhaut {
+    z-index: 998;
+    opacity: 1;
+  }
 
-/* fin changement  */
+  
+  
+  /* fin changement  */
+  
 
 
   #learnocaml-exo-tabs > * {
@@ -211,8 +242,8 @@ body {
 }
 /* -------------------- editor tab -------------------------------- */
 #learnocaml-exo-tab-buttons > #learnocaml-exo-button-editor {
-  background: #444;
-  color: white;
+  background: #eee;
+  color: black;
 }
 #learnocaml-exo-tab-editor > .pane {
   position: absolute;
@@ -257,8 +288,8 @@ body {
 }
 /*--------------------- template ---------------------------------- */
 #learnocaml-exo-tab-buttons > #learnocaml-exo-button-template {
-  background: #444;
-  color: white;
+  background: #eee;
+  color: black;
 }
 #learnocaml-exo-tab-template > .template-pane {
   position: absolute;
@@ -304,8 +335,8 @@ body {
 
 /*--------------------- prepare ---------------------------------- */
 #learnocaml-exo-tab-buttons > #learnocaml-exo-button-prepare {
-  background: #444;
-  color: white;
+  background: #eee;
+  color: black;
 }
 #learnocaml-exo-tab-prepare > .prepare-pane {
   position: absolute;
@@ -351,8 +382,8 @@ body {
 
 /*--------------------- prelude ---------------------------------- */
 #learnocaml-exo-tab-buttons > #learnocaml-exo-button-prelude {
-  background: #444;
-  color: white;
+  background: #eee;
+  color: black;
 }
 #learnocaml-exo-tab-prelude > .prelude-pane {
   position: absolute;
@@ -405,7 +436,7 @@ body {
   margin: 5px 0 0 0;
 }
 #learnocaml-exo-tab-buttons > #learnocaml-exo-button-toplevel {
-  background: #bbb;
+  background: #eee;
 }
 #learnocaml-exo-tab-toplevel {
   background: #bbb;
@@ -458,8 +489,8 @@ body {
 /* attention changement  */
 
 #learnocaml-exo-tab-buttons > #learnocaml-exo-button-test {
-  background: #444;
-  color: white;
+  background: #eee;
+  color: black;
 }
 #learnocaml-exo-tab-test > .test-pane {
   position: absolute;
@@ -504,6 +535,51 @@ body {
     display: none;
   }
 }
+
+/* testhaut */
+
+#learnocaml-exo-tab-buttons > #learnocaml-exo-button-testhaut {
+  background: #eee;
+  color: black;
+}
+
+
+#learnocaml-exo-tab-testhaut > .buttons {
+  position: absolute;
+  left: 0; bottom: 0px; width: 100%; height: 40px;
+  background: linear-gradient(to bottom, #666 0px, #444 10px, #222 60px);
+  color: #fff;
+  line-height: 40px;
+  display: flex;
+  flex-direction: row;
+  z-index: 1003;
+}
+#learnocaml-exo-tab-testhaut > .buttons::after {
+  position: absolute;
+  bottom: 40px; left: 0px; height: 5px; width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.4) 0px, rgba(0,0,0,0) 5px);
+  content:"";
+}
+#learnocaml-exo-tab-testhaut > .buttons > button {
+  flex: 1;
+  background: none;
+  border: none;
+  color: #eee;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+  border-top: 1px #eee solid;
+  position: relative;
+  padding: 0;
+}
+#learnocaml-exo-tab-testhaut > .buttons > button:not(:first-child) {
+  border-left: 1px #eee solid;
+}
+@media (max-width: 550px) {
+  #learnocaml-exo-tab-testhaut > .buttons > button > .label {
+    display: none;
+  }
+}
+
+/* fin testhaut */
 
 /* fin du changement  */
 
@@ -821,6 +897,119 @@ body {
   color: #b00;
   text-shadow: 0px 0px 40px #F66;
 }
+
+/*testhaut */
+
+#learnocaml-exo-testhaut-pane {
+  font-size: 18px;
+  font-family: 'Inconsolata', monospace;
+}
+#toolbar{
+	height: 30px;
+}
+#button_delete{
+	position: absolute;
+}
+#up{
+	position: absolute;
+	left: 45px;  
+}
+#down{
+	position: absolute;
+	left: 90px;
+}
+#learnocaml-exo-tab-testhaut > .testhaut-edit {
+  position: absolute;
+  left: 0; top: 0; bottom: 64%; width: 100%;
+  background: #666;
+  color: #fff;
+  z-index: 1002;
+}
+
+#learnocaml-exo-tab-testhaut > .testhaut-pane {
+  position: absolute;
+  left: 0; top: 33%; bottom: 40px; width: 100%;
+  background: #eee;
+  color: #fff;
+  z-index: 1002;
+	overflow-y: auto
+}
+#learnocaml-exo-testhaut-edit .ace_gutter {
+  background: linear-gradient(to left, transparent 0, #444 8px, #ccc 8px, #ccc 9px, #444 9px) ;
+  color: #ccc;
+}
+#learnocaml-exo-testhaut-edit .ace_gutter-active-line {
+  background: linear-gradient(to left, #777 0, #456 8px, #ccc 8px, #ccc 9px, #678 9px) ;
+  color: #888;
+}
+#learnocaml-exo-testhaut-edit .ace_gutter-cell {
+  padding: 0 14px 0 0;
+}
+#learnocaml-exo-testhaut-edit .ace_gutter-cell.ace_warning {
+  background: linear-gradient(to right, #980 0, #980 4px, transparent 80%) ;
+}
+#learnocaml-exo-testhaut-edit .ace_gutter-cell.ace_error {
+  background: linear-gradient(to right, #900 0, #900 4px, transparent 80%) ;
+}
+#learnocaml-exo-testhaut-edit .ace_comment { color: #aaa; font-style: italic; }
+#learnocaml-exo-testhaut-edit .ace_keyword { color: #e80; font-weight:bold; }
+#learnocaml-exo-testhaut-edit .ace_constant { color: #acf; }
+#learnocaml-exo-testhaut-edit .ace_string { color: #acf; }
+#learnocaml-exo-testhaut-edit .ace_function { color: #fff; }
+#learnocaml-exo-testhaut-edit .ace_type { color: #fff; }
+#learnocaml-exo-testhaut-edit .ace_operator { color: #fff; }
+#learnocaml-exo-testhaut-edit .ace_meta { color: #fff; }
+#learnocaml-exo-testhaut-edit .ace_variable { color: #fff; }
+#learnocaml-exo-testhaut-edit .ace_text { color: #fff; }
+#learnocaml-exo-testhaut-edit .error {
+  border-bottom: 2px #b00 solid;
+  position: absolute;
+}
+
+#learnocaml-exo-testhaut-edit .warning {
+  border-bottom: 2px #ca0 solid;
+  position: absolute;
+}
+
+#learnocaml-exo-testhaut-edit .ace_selection { background: #e80; opacity: 0.4; }
+#learnocaml-exo-testhaut-edit .ace_active-line { background: #acf; opacity: 0.2; }
+#learnocaml-exo-testhaut-edit .ace_selected-word { background: #e80; opacity: 0.2; }
+
+#learnocaml-exo-testhaut-edit.ocaml-check-success::after,
+#learnocaml-exo-testhaut-edit.ocaml-check-warn::after,
+#learnocaml-exo-testhaut-edit.ocaml-check-error::after {
+  animation: 1s check_status_animation;
+  animation-fill-mode: forwards;
+  position: absolute;
+  margin: -100px 0 0 0;
+  top: 50%;
+  text-align: center;
+  font-size: 200px;
+  line-height: 200px;
+  width: 100%;
+}
+
+#learnocaml-exo-testhaut-edit.ocaml-check-success::after {
+  content: "✌";
+  color: #0a0;
+  text-shadow: 0px 0px 40px #6F6;
+}
+
+#learnocaml-exo-testhaut-edit.ocaml-check-warn::after {
+  content: "✋";
+  color: #ec0;
+  text-shadow: 0px 0px 40px #Fe6;
+}
+
+#learnocaml-exo-testhaut-edit.ocaml-check-error::after {
+  content: "☠";
+  color: #b00;
+  text-shadow: 0px 0px 40px #F66;
+}
+
+/* fin testhaut */
+
+
 
 /* question mark */
 
