@@ -42,6 +42,7 @@
         <img src="icons/logo_ocp.svg">
       </div>
       <div>
+	  	<button id="check" type="button" class="button">Check</button>
       	<button id="cancel" type="button" class="button">Cancel</button>
     	<button id="save" type="submit" class="button">Save</button>
       </div>
@@ -52,13 +53,13 @@
       <div id="learnocaml-tab-name">
         <label id="txt_name" for="name">Function name: </label>
         <input type="text" id="name" name="name" value=""
-               maxlength="250" size="40" required autofocus />
+               maxlength="250" size="25%" required autofocus />
         <span id="name_error" class="error" aria-live="polite"></span>
       </div>
       <div id="learnocaml-tab-type">
         <label id="txt_ty" for="ty">Type: </label>
         <input type="text" id="ty" name="ty" value=""
-               size="40" required />
+               size="25%" required />
         <span id="type_error" class="error" aria-live="polite"></span>
       </div>
       <div id="learnocaml-tab-choix">
@@ -72,7 +73,10 @@
     </div>
     <div id="learnocaml-tabs">
       <div id="learnocaml-tab-solution">
-	<a id="txt_input_sol">Arguments:<br></a>
+	<div id="txt_input_sol" class="popup">
+	  Arguments:<br>
+	  <span class="popuptext" id="popup-sol"/>
+	</div>
 	<div id="learnocaml-tab-solution-input">
 	</div>
 	<div id="learnocaml-tab-solution-extra">
@@ -98,9 +102,12 @@
 	  <input type="text" value="" id="sol-sampler"></input>
 	</div>
       </div>
-      
+
       <div id="learnocaml-tab-spec">
-	<a id="txt_input_spec">Arguments:<br></a>
+	<div id="txt_input_spec" class="popup">
+	  Arguments:<br>
+	  <span class="popuptext" id="popup-spec-arg"/>
+	</div>
 	<div id="learnocaml-tab-spec-input">
 	</div>
 	<div id="learnocaml-tab-spec-extra">
@@ -125,13 +132,19 @@
 	  <label id="txt_sampler_spec" for="spec-sampler">Sampler:<br></label>
 	  <input type="text" value="" id="spec-sampler"></input>
 	</div>
-	<a id="txt_spec_specification">Specification:<br></a>
+	<div id="txt_spec_specification" class="popup">
+	  Specification:<br>
+	  <span class="popuptext" id="popup-spec"/>
+	</div>
 	<div id="learnocaml-tab-spec-spec">
 	</div>
       </div>
-      
+
       <div id="learnocaml-tab-suite">
-	<a id="txt_suite_input">Arguments and results:<br></a>
+	<div id="txt_suite_input" class="popup">
+	  Arguments and results:<br>
+	  <span class="popuptext" id="popup-suite"/>
+	</div>
 	<div id="learnocaml-tab-suite-input">
 	</div>
 	<div id="learnocaml-tab-suite-datalist">
@@ -149,6 +162,7 @@
 	</div>
       </div>
     </div>
+    <div id="check-answer" class="loading-layer loaded" style="position: absolute;left:0%;right:0%;top:0%;bottom:0%"></div>
     <!--/form-->
   </body>
 </html>
