@@ -20,7 +20,7 @@ fi
 export PS4='+ \e[36;1m(${0##*/} @ line $LINENO) \$\e[0m '
 set -x # trace for debug
 
-test -d "${srcdir}/../$repo" || git clone https://github.com/agrn/learn-ocaml.git -b ag/static-deploy --depth=1
+test -d "${srcdir}/../$repo" || git clone https://github.com/agrn/learn-ocaml.git -b ag/static-deployment --depth=1
 cd "${srcdir}/../$repo/"
 [ "$1" = "-B" ] && make clean
 # make build
