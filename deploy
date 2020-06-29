@@ -20,15 +20,21 @@ fi
 export PS4='+ \e[36;1m(${0##*/} @ line $LINENO) \$\e[0m '
 set -x # trace for debug
 
-test -d "${srcdir}/.build/$repo" || git clone https://github.com/agrn/learn-ocaml.git -b ag/static-deployment --depth=1 "${srcdir}/.build/$repo"
+if test -d "${srcdir}/.build/$repo"; then
+    cd "${srcdir}/.build/$repo"
+    git fetch --depth=1 origin
+    git reset --hard @{u}
+else
+    git clone https://github.com/agrn/learn-ocaml.git -b ag/static-deployment --depth=1 "${srcdir}/.build/$repo"
+    cd "${srcdir}/.build/$repo"
+fi
 # TODO: run "opam install" etc. (or leverage the build using Docker)
-cd "${srcdir}/.build/$repo/"
 [ "$1" = "-B" ] && make clean
 # make build
 # make process-repo
 make
 make opaminstall
-learn-ocaml build -r "https://pfitaxel.github.io/pfitaxel-demo-dev" --repo=demo-repository
+learn-ocaml build --root "https://pfitaxel.github.io/pfitaxel-demo-dev" --repo=demo-repository
 rsync -av --delete-delay www/ "${srcdir}"/docs
 descr=$(git describe --long --always)
 
