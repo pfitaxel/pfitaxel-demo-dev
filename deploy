@@ -54,9 +54,9 @@ make_gen() {
     if [ "$2" = "-B" ]; then
         make clean
     fi
-    if [ "$1" != "-B" ]; then
-            cat >&2 <<EOF
-        Usage: make_gen [-B]  # where -B runs 'make clean' beforehand
+    if [ "$2" != "-B" ]; then
+        cat >&2 <<EOF
+Usage: make_gen URL [-B]  # where -B runs 'make clean' beforehand
 EOF
     fi
     # REMARK: needs an opam switch (opam install, etc.)
