@@ -95,7 +95,7 @@ docker_gen() {
     : Remove temporary directory...
     rm -fr "$T"
 
-    echo "$image" > VERSION
+    echo "$image" > "${srcdir}/VERSION"
 }
 
 deploy_locally() {
