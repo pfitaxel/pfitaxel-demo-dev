@@ -89,6 +89,7 @@ docker_gen() {
     rsync -av --delete-delay "$T/www/" "${srcdir}/docs"
     : Remove temporary directory...
     rm -fr "$T"
+
     echo "$image" > VERSION
 }
 
@@ -109,8 +110,10 @@ deploy() {
     cp -pv "${srcdir}/.nojekyll" "${srcdir}/docs/"
 
     cd "${srcdir}"
+    git add VERSION
     git add -v -A docs
     repo="learn-ocaml"
+    # TODO: replace previous commit?
     git commit -m "Build $repo ($(<VERSION))" -e
     pause push && git push
 }
