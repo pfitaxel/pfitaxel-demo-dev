@@ -6,6 +6,18 @@
 # This script is contributed under the terms of the MIT license,
 # cf. <https://spdx.org/licenses/MIT.html>
 
+if [ "$1" = "--help" ]; then
+    cat <<EOF
+Usage: $ ./deploy /path/to/repository
+
+       $ ./deploy  # defaults to:
+       $ ./deploy ./build/learn-ocaml/demo-repository
+
+       $ ./deploy --help  # print this help
+EOF
+    exit 0
+fi
+
 set -e # exit on failure
 srcdir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )
 
@@ -80,12 +92,13 @@ function failtemp () {
 docker_gen() {
     local target_url="$1"
     local repo="learn-ocaml"
+    local repository="${2:-${srcdir}/.build/$repo/demo-repository}"
     export PS4='+ \e[36;1m(${0##*/} @ line $LINENO) \$\e[0m '
     set -x # trace for debug
     : Create temporary directory...
     T=$(mktemp -d /tmp/learn-ocaml-www.XXX) || failtemp
     : Generate www using Docker...
-    sudo docker run --rm -i -v "${srcdir}/.build/$repo/demo-repository:/repository" -v "$T:/home/learn-ocaml/tmp" --entrypoint="" "$image" sh -c "learn-ocaml build --repo=/repository --root $target_url && mv -v www tmp/"
+    sudo docker run --rm -i -v "$repository:/repository" -v "$T:/home/learn-ocaml/tmp" --entrypoint="" "$image" sh -c "learn-ocaml build --repo=/repository --root $target_url && mv -v www tmp/"
     # : Replace docs folder...
     # rm -fr docs/
     # mv -v -T "$T/www" ./docs
@@ -109,9 +122,10 @@ deploy_locally() {
 }
 
 deploy() {
+    repository="$1"  # can be the empty string, see docker_gen
     clone_subdir
     target_url=$(get_url)
-    docker_gen "$target_url"
+    docker_gen "$target_url" "$repository"
     cp -pv "${srcdir}/.nojekyll" "${srcdir}/docs/"
 
     cd "${srcdir}"
@@ -123,5 +137,5 @@ deploy() {
     pause push && git push
 }
 
-# deploy_locally
-deploy
+# deploy_locally "$@"
+deploy "$@"
