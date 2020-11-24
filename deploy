@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
-# Erik Martin-Dorel - 2018, 2020
+# -*- coding: utf-8 -*-
+#
+# Copyright (c) 2018, 2020  Érik Martin-Dorel
+#
+# This script is contributed under the terms of the MIT license,
+# cf. <https://spdx.org/licenses/MIT.html>
 
 set -e # exit on failure
 srcdir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )
