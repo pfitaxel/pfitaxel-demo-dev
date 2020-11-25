@@ -4,5 +4,5 @@ var learnocaml_config = {
   enableLessons: true,
   enableExercises: true,
   enableToplevel: true,
-  root: "https://pfitaxel.github.io/pfitaxel-demo-dev"
+  baseUrl: "https://pfitaxel.github.io/pfitaxel-demo-dev"
 }
