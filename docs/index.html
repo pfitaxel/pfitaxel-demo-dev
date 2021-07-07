@@ -10,6 +10,8 @@
   <link href="https://pfitaxel.github.io/pfitaxel-demo-dev/css/learnocaml_main.css" rel="stylesheet">
   <link href="https://pfitaxel.github.io/pfitaxel-demo-dev/css/learnocaml_teacher_tab.css" rel="stylesheet">
   <script src="https://pfitaxel.github.io/pfitaxel-demo-dev/js/ace/ace.js" type="text/javascript" charset="utf-8" defer=""></script>
+  <script src="https://pfitaxel.github.io/pfitaxel-demo-dev/js/jszip/jszip.min.js" type="text/javascript" charset="utf-8" defer=""></script>
+  <script src="https://pfitaxel.github.io/pfitaxel-demo-dev/js/jszip/learnocaml_jszip_wrapper.js" type="text/javascript" charset="utf-8" defer=""></script>
   <script src="https://pfitaxel.github.io/pfitaxel-demo-dev/js/learnocaml-config.js" language="JavaScript"></script>
   <script src="https://pfitaxel.github.io/pfitaxel-demo-dev/js/learnocaml-main.js" language="JavaScript" defer=""></script>
  </head>
@@ -94,7 +96,7 @@
      <div class="filler_h"></div>
      <input id="login-nickname-input" type="text" placeholder="Nickname" minlength="2" autocomplete="off">
     </div>
-    <div>
+    <div style="display:none" id="secret-section">
      <div id="txt_first_connection_secret">
 <!-- Enter the secret -->     </div>
      <div class="filler_h"></div>
